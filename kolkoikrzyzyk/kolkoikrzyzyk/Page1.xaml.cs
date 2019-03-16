@@ -8,18 +8,15 @@ namespace kolkoikrzyzyk
     [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Page1 : ContentPage
     {
-        
-        public String wynik;
         QueueWynikow queue = new QueueWynikow();
-
+        public String wynik;
         private bool koniecGry = false;
         //tablica pól w grze
         private int[,] pola = new int[3, 3];
         //tablica z nazwami przycisków
         private Button[,] buttonNazwy = new Button[3, 3];
-
         int ktoZaczyna;
-        int ktoGra;
+        int kogoRuch;
         public Page1(string nazwaUzytkowkika)
         {
             InitializeComponent();
@@ -33,7 +30,7 @@ namespace kolkoikrzyzyk
             }
             if (nazwaUzytkowkika==null)
             {
-                labelNazwa.Text = "Bezimienny";
+                labelNazwa.Text = "Nick";
             }
             else
             {
@@ -71,261 +68,74 @@ namespace kolkoikrzyzyk
             //bot zaczyna
             if (ktoZaczyna==2)
             {
-                if(ktoGra==0)
+                if(kogoRuch==0)
                 {
-                    WstawO(buttonNazwy[1, 1]);
+                    WstawZnak(buttonNazwy[1, 1]);
                 }
                 //drugi ruch
-                if(ktoGra==2)
+                if(kogoRuch==2)
                 {
                     if( pola[0, 2] == 1 || pola[2, 0] == 1)
                     {
-                        WstawO(buttonNazwy[0, 0]);
+                        WstawZnak(buttonNazwy[0, 0]);
                     }
                     else if (pola[0, 0] == 1 || pola[2, 2] == 1)
                     {
-                        WstawO(buttonNazwy[0, 2]);
+                        WstawZnak(buttonNazwy[0, 2]);
                     }
                     else
                     {
-                        WstawO(buttonNazwy[0, 2]);
+                        WstawZnak(buttonNazwy[0, 2]);
                     }
                 }
                 //kolejne ruchy
-                if(ktoGra>2)
-                {   
-                    //komputer sprawdza czy może dołożyć 3 kółko, żeby skończyć grę
-                    if (wygrana1 == -10)
-                    {
-                        for (int i = 0; i < 3; i++)
-                        {
-                            if (pola[0, i] == -10)
-                            {
-                                WstawO(buttonNazwy[0,i]);
-                            }
-                        }                       
-                    }
-                    else if (wygrana2 == -10)
-                    {
-                        for (int i = 0; i < 3; i++)
-                        {
-                            if (pola[1, i] == -10)
-                            {
-                                WstawO(buttonNazwy[1, i]);
-                            }
-                        }
-                    }
-                    else if (wygrana3 == -10)
-                    {
-                        for (int i = 0; i < 3; i++)
-                        {
-                            if (pola[2, i] == -10)
-                            {
-                                WstawO(buttonNazwy[2, i]);
-                            }
-                        }
-                    }
-                    else if (wygrana4 == -10)
-                    {
-                        for (int i = 0; i < 3; i++)
-                        {
-                            if (pola[i, 0] == -10)
-                            {
-                                WstawO(buttonNazwy[i, 0]);
-                            }
-                        }
-                    }
-                    else if (wygrana5 == -10)
-                    {
-                        for (int i = 0; i < 3; i++)
-                        {
-                            if (pola[i, 1] == -10)
-                            {
-                                WstawO(buttonNazwy[i, 1]);
-                            }
-                        }
-                    }
-                    else if (wygrana6 == -10)
-                    {
-                        for (int i = 0; i < 3; i++)
-                        {
-                            if (pola[i, 2] == -10)
-                            {
-                                WstawO(buttonNazwy[i, 2]);
-                            }
-                        }
-                    }
-                    else if (wygrana7 == -10)
-                    {
-                        for (int i = 0; i < 3; i++)
-                        {
-                            if (pola[i, i] == -10)
-                            {
-                                WstawO(buttonNazwy[i, i]);
-                            }
-                        }
-                    }
-                    else if (wygrana8 == -10)
-                    {
-                        if(pola[0,2]==-10)
-                        {
-                            WstawO(buttonNazwy[0, 2]);
-                        }
-                        if (pola[1, 1] == -10)
-                        {
-                            WstawO(buttonNazwy[1, 1]);
-                        }
-                        if (pola[2, 0] == -10)
-                        {
-                            WstawO(buttonNazwy[2, 0]);
-                        }
-                    }
-                    //komputer sprawdza czy gracz może skończyć grę i go blokuje
-                    else if (wygrana1 == -8)
-                    {
-                        for (int i = 0; i < 3; i++)
-                        {
-                            if (pola[0, i] == -10)
-                            {
-                                WstawO(buttonNazwy[0, i]);
-                            }
-                        }
-                    }
-                    else if (wygrana2 == -8)
-                    {
-                        for (int i = 0; i < 3; i++)
-                        {
-                            if (pola[1, i] == -10)
-                            {
-                                WstawO(buttonNazwy[1, i]);
-                            }
-                        }
-                    }
-                    else if (wygrana3 == -8)
-                    {
-                        for (int i = 0; i < 3; i++)
-                        {
-                            if (pola[2, i] == -10)
-                            {
-                                WstawO(buttonNazwy[2, i]);
-                            }
-                        }
-                    }
-                    else if (wygrana4 == -8)
-                    {
-                        for (int i = 0; i < 3; i++)
-                        {
-                            if (pola[i, 0] == -10)
-                            {
-                                WstawO(buttonNazwy[i, 0]);
-                            }
-                        }
-                    }
-                    else if (wygrana5 == -8)
-                    {
-                        for (int i = 0; i < 3; i++)
-                        {
-                            if (pola[i, 1] == -10)
-                            {
-                                WstawO(buttonNazwy[i, 1]);
-                            }
-                        }
-                    }
-                    else if (wygrana6 == -8)
-                    {
-                        for (int i = 0; i < 3; i++)
-                        {
-                            if (pola[i, 2] == -10)
-                            {
-                                WstawO(buttonNazwy[i, 2]);
-                            }
-                        }
-                    }
-                    else if (wygrana7 == -8)
-                    {
-                        for (int i = 0; i < 3; i++)
-                        {
-                            if (pola[i, i] == -10)
-                            {
-                                WstawO(buttonNazwy[i, i]);
-                            }
-                        }
-                    }
-                    else if (wygrana8 == -8)
-                    {
-                        if (pola[0, 2] == -10)
-                        {
-                            WstawO(buttonNazwy[0, 2]);
-                        }
-                        if (pola[1, 1] == -10)
-                        {
-                            WstawO(buttonNazwy[1, 1]);
-                        }
-                        if (pola[2, 0] == -10)
-                        {
-                            WstawO(buttonNazwy[2, 0]);
-                        }
-                    }
-                    else
-                    {
-                        for (int i = 0; i < 3; i++)
-                        {
-                            for (int j = 0; j < 3; j++)
-                            {
-                                if(pola[i,j]==-10)
-                                {
-                                    WstawO(buttonNazwy[i, j]);
-                                    i = 3;
-                                    j = 3;
-                                }
-                            }       
-                        }
-                    }
-
+                if(kogoRuch>2)
+                {
+                    RuchBota(wygrana1, wygrana2, wygrana3, wygrana4, wygrana5, wygrana6, wygrana7, wygrana8);
                 }
             }
             //bot gra drugi
             else if(ktoZaczyna==1)
             {
-                if (ktoGra == 1)
+                if (kogoRuch == 1)
                 {
                     if (pola[1, 1] == -10)
                     {
-                        WstawO(buttonNazwy[1, 1]);
+                        WstawZnak(buttonNazwy[1, 1]);
                     }
                     else
                     {
-                        WstawO(buttonNazwy[0, 0]);
+                        WstawZnak(buttonNazwy[0, 0]);
                     }
                 }
                 //drugi ruch
-                if (ktoGra == 3)
+                if (kogoRuch == 3)
                 {
                     if(pola[1,1] == 0)
                     {
                         if(pola[0,0]==1 && pola[0,2]==1)
                         {
-                            WstawO(buttonNazwy[0, 1]);
+                            WstawZnak(buttonNazwy[0, 1]);
                         }
                         else if (pola[0, 0] == 1 && pola[2, 0] == 1)
                         {
-                            WstawO(buttonNazwy[1, 0]);
+                            WstawZnak(buttonNazwy[1, 0]);
                         }
                         else if (pola[2, 0] == 1 && pola[2, 2] == 1)
                         {
-                            WstawO(buttonNazwy[2, 1]);
+                            WstawZnak(buttonNazwy[2, 1]);
                         }
                         else if (pola[0, 2] == 1 && pola[2, 2] == 1)
                         {
-                            WstawO(buttonNazwy[1, 2]);
+                            WstawZnak(buttonNazwy[1, 2]);
                         }
                         else if(pola[0,0]==1 && pola[2,2]==1)
                         {
-                            WstawO(buttonNazwy[0, 1]);
+                            WstawZnak(buttonNazwy[0, 1]);
                         }
                         else if (pola[0, 2] == 1 && pola[2, 0] == 1)
                         {
-                            WstawO(buttonNazwy[0, 1]);
+                            WstawZnak(buttonNazwy[0, 1]);
                         }
                         //sytuacja gracz ma róg i bok po przeciwnej stronie, bot ma środek
                         else if ((pola[0,0]==1 || pola[2, 2] == 1 || pola[0, 2] == 1 || pola[2, 0] == 1) && (pola[0, 1] == 1 || pola[1, 0] == 1 || pola[1, 2] == 1 || pola[2, 1] == 1))
@@ -357,22 +167,22 @@ namespace kolkoikrzyzyk
                             {
                                 if (c % 2 == 0)
                                 {
-                                    WstawO(buttonNazwy[c, b]);
+                                    WstawZnak(buttonNazwy[c, b]);
                                 }
                                 else
                                 {
-                                    WstawO(buttonNazwy[a, d]);
+                                    WstawZnak(buttonNazwy[a, d]);
                                 }
                             }
                             else
                             {
                                 if(a == c)
                                 {
-                                    WstawO(buttonNazwy[a, 3-(b+d)]);
+                                    WstawZnak(buttonNazwy[a, 3-(b+d)]);
                                 }
                                 else
                                 {
-                                    WstawO(buttonNazwy[3-(a+c), b]);
+                                    WstawZnak(buttonNazwy[3-(a+c), b]);
                                 }
 
                             }
@@ -385,7 +195,7 @@ namespace kolkoikrzyzyk
                                 {
                                     if (pola[i, j] == -10 && i%2==0 && j%2==0)
                                     {
-                                        WstawO(buttonNazwy[i, j]);
+                                        WstawZnak(buttonNazwy[i, j]);
                                         i = 3;
                                         j = 3;
                                     }
@@ -397,222 +207,35 @@ namespace kolkoikrzyzyk
                     {
                         if (pola[1, 0] == 1)
                         {
-                            WstawO(buttonNazwy[1, 2]);
+                            WstawZnak(buttonNazwy[1, 2]);
                         }
                         else if (pola[1, 2] == 1)
                         {
-                            WstawO(buttonNazwy[1, 0]);
+                            WstawZnak(buttonNazwy[1, 0]);
                         }
                         else if (pola[0, 1] == 1)
                         {
-                            WstawO(buttonNazwy[2, 1]);
+                            WstawZnak(buttonNazwy[2, 1]);
                         }
                         else if (pola[2, 1] == 1)
                         {
-                            WstawO(buttonNazwy[0, 1]);
+                            WstawZnak(buttonNazwy[0, 1]);
                         }
                     }
                     else if (pola[0, 2] == -10)
                     {
-                        WstawO(buttonNazwy[0, 2]);
+                        WstawZnak(buttonNazwy[0, 2]);
                     }
                     else if (pola[2, 2] == -10)
                     {
-                        WstawO(buttonNazwy[2, 2]);
+                        WstawZnak(buttonNazwy[2, 2]);
                     }
 
                 }
                 //kolejne ruchy
-                if(ktoGra>3)
+                if(kogoRuch>3)
                 {
-                    {
-                        if (wygrana1 == -10)
-                        {
-                            for (int i = 0; i < 3; i++)
-                            {
-                                if (pola[0, i] == -10)
-                                {
-                                    WstawO(buttonNazwy[0, i]);
-                                }
-                            }
-                        }
-                        else if (wygrana2 == -10)
-                        {
-                            for (int i = 0; i < 3; i++)
-                            {
-                                if (pola[1, i] == -10)
-                                {
-                                    WstawO(buttonNazwy[1, i]);
-                                }
-                            }
-                        }
-                        else if (wygrana3 == -10)
-                        {
-                            for (int i = 0; i < 3; i++)
-                            {
-                                if (pola[2, i] == -10)
-                                {
-                                    WstawO(buttonNazwy[2, i]);
-                                }
-                            }
-                        }
-                        else if (wygrana4 == -10)
-                        {
-                            for (int i = 0; i < 3; i++)
-                            {
-                                if (pola[i, 0] == -10)
-                                {
-                                    WstawO(buttonNazwy[i, 0]);
-                                }
-                            }
-                        }
-                        else if (wygrana5 == -10)
-                        {
-                            for (int i = 0; i < 3; i++)
-                            {
-                                if (pola[i, 1] == -10)
-                                {
-                                    WstawO(buttonNazwy[i,1]);
-                                }
-                            }
-                        }
-                        else if (wygrana6 == -10)
-                        {
-                            for (int i = 0; i < 3; i++)
-                            {
-                                if (pola[i, 2] == -10)
-                                {
-                                    WstawO(buttonNazwy[i, 2]);
-                                }
-                            }
-                        }
-                        else if (wygrana7 == -10)
-                        {
-                            for (int i = 0; i < 3; i++)
-                            {
-                                if (pola[i, i] == -10)
-                                {
-                                    WstawO(buttonNazwy[i, i]);
-                                }
-                            }
-                        }
-                        else if (wygrana8 == -10)
-                        {
-                            if (pola[0, 2] == -10)
-                            {
-                                WstawO(buttonNazwy[0, 2]);
-                            }
-                            if (pola[1, 1] == -10)
-                            {
-                                WstawO(buttonNazwy[1, 1]);
-                            }
-                            if (pola[2, 0] == -10)
-                            {
-                                WstawO(buttonNazwy[2, 0]);
-                            }
-                        }                       
-                        else if (wygrana1 == -8)
-                        {
-                            for (int i = 0; i < 3; i++)
-                            {
-                                if (pola[0, i] == -10)
-                                {
-                                    WstawO(buttonNazwy[0, i]);
-                                }
-                            }
-                        }
-                        else if (wygrana2 == -8)
-                        {
-                            for (int i = 0; i < 3; i++)
-                            {
-                                if (pola[1, i] == -10)
-                                {
-                                    WstawO(buttonNazwy[1, i]);
-                                }
-                            }
-                        }
-                        else if (wygrana3 == -8)
-                        {
-                            for (int i = 0; i < 3; i++)
-                            {
-                                if (pola[2, i] == -10)
-                                {
-                                    WstawO(buttonNazwy[2, i]);
-                                }
-                            }
-                        }
-                        else if (wygrana4 == -8)
-                        {
-                            for (int i = 0; i < 3; i++)
-                            {
-                                if (pola[i, 0] == -10)
-                                {
-                                    WstawO(buttonNazwy[i, 0]);
-                                }
-                            }
-                        }
-                        else if (wygrana5 == -8)
-                        {
-                            for (int i = 0; i < 3; i++)
-                            {
-                                if (pola[i, 1] == -10)
-                                {
-                                    WstawO(buttonNazwy[i, 1]);
-                                }
-                            }
-                        }
-                        else if (wygrana6 == -8)
-                        {
-                            for (int i = 0; i < 3; i++)
-                            {
-                                if (pola[i, 2] == -10)
-                                {
-                                    WstawO(buttonNazwy[i, 2]);
-                                }
-                            }
-                        }
-                        else if (wygrana7 == -8)
-                        {
-                            for (int i = 0; i < 3; i++)
-                            {
-                                if (pola[i, i] == -10)
-                                {
-                                    WstawO(buttonNazwy[i, i]);
-                                }
-                            }
-                        }
-                        else if (wygrana8 == -8)
-                        {
-                            if (pola[0, 2] == -10)
-                            {
-                                WstawO(buttonNazwy[0, 2]);
-                            }
-                            if (pola[1, 1] == -10)
-                            {
-                                WstawO(buttonNazwy[1, 1]);
-                            }
-                            if (pola[2, 0] == -10)
-                            {
-                                WstawO(buttonNazwy[2, 0]);
-                            }
-                        }
-                        else
-                        {
-                            for (int i = 0; i < 3; i++)
-                            {
-                                for (int j = 0; j < 3; j++)
-                                {
-                                    if (pola[i, j] == -10)
-                                    {
-                                        WstawO(buttonNazwy[i,j]);
-                                        i = 3;
-                                        j = 3;                                      
-                                    }
-                                }
-                            }
-                        }
-
-                    }
+                    RuchBota(wygrana1, wygrana2, wygrana3, wygrana4, wygrana5, wygrana6, wygrana7, wygrana8);                    
                 }
             }
             //wypełnianie kolorem pól zaznaczonych przez komputer
@@ -626,10 +249,202 @@ namespace kolkoikrzyzyk
                     }
                 }
             }
-            ktoGra++;
-            Sprawdz();
+            kogoRuch++;
+            SprawdzanieKoncaGry();
         }
-        private void WstawO(Button pole)
+        private void RuchBota(int wygrana1, int wygrana2, int wygrana3, int wygrana4, int wygrana5, int wygrana6, int wygrana7, int wygrana8)
+        {
+
+            {
+                if (wygrana1 == -10)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (pola[0, i] == -10)
+                        {
+                            WstawZnak(buttonNazwy[0, i]);
+                        }
+                    }
+                }
+                else if (wygrana2 == -10)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (pola[1, i] == -10)
+                        {
+                            WstawZnak(buttonNazwy[1, i]);
+                        }
+                    }
+                }
+                else if (wygrana3 == -10)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (pola[2, i] == -10)
+                        {
+                            WstawZnak(buttonNazwy[2, i]);
+                        }
+                    }
+                }
+                else if (wygrana4 == -10)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (pola[i, 0] == -10)
+                        {
+                            WstawZnak(buttonNazwy[i, 0]);
+                        }
+                    }
+                }
+                else if (wygrana5 == -10)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (pola[i, 1] == -10)
+                        {
+                            WstawZnak(buttonNazwy[i, 1]);
+                        }
+                    }
+                }
+                else if (wygrana6 == -10)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (pola[i, 2] == -10)
+                        {
+                            WstawZnak(buttonNazwy[i, 2]);
+                        }
+                    }
+                }
+                else if (wygrana7 == -10)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (pola[i, i] == -10)
+                        {
+                            WstawZnak(buttonNazwy[i, i]);
+                        }
+                    }
+                }
+                else if (wygrana8 == -10)
+                {
+                    if (pola[0, 2] == -10)
+                    {
+                        WstawZnak(buttonNazwy[0, 2]);
+                    }
+                    if (pola[1, 1] == -10)
+                    {
+                        WstawZnak(buttonNazwy[1, 1]);
+                    }
+                    if (pola[2, 0] == -10)
+                    {
+                        WstawZnak(buttonNazwy[2, 0]);
+                    }
+                }
+                else if (wygrana1 == -8)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (pola[0, i] == -10)
+                        {
+                            WstawZnak(buttonNazwy[0, i]);
+                        }
+                    }
+                }
+                else if (wygrana2 == -8)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (pola[1, i] == -10)
+                        {
+                            WstawZnak(buttonNazwy[1, i]);
+                        }
+                    }
+                }
+                else if (wygrana3 == -8)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (pola[2, i] == -10)
+                        {
+                            WstawZnak(buttonNazwy[2, i]);
+                        }
+                    }
+                }
+                else if (wygrana4 == -8)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (pola[i, 0] == -10)
+                        {
+                            WstawZnak(buttonNazwy[i, 0]);
+                        }
+                    }
+                }
+                else if (wygrana5 == -8)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (pola[i, 1] == -10)
+                        {
+                            WstawZnak(buttonNazwy[i, 1]);
+                        }
+                    }
+                }
+                else if (wygrana6 == -8)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (pola[i, 2] == -10)
+                        {
+                            WstawZnak(buttonNazwy[i, 2]);
+                        }
+                    }
+                }
+                else if (wygrana7 == -8)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (pola[i, i] == -10)
+                        {
+                            WstawZnak(buttonNazwy[i, i]);
+                        }
+                    }
+                }
+                else if (wygrana8 == -8)
+                {
+                    if (pola[0, 2] == -10)
+                    {
+                        WstawZnak(buttonNazwy[0, 2]);
+                    }
+                    if (pola[1, 1] == -10)
+                    {
+                        WstawZnak(buttonNazwy[1, 1]);
+                    }
+                    if (pola[2, 0] == -10)
+                    {
+                        WstawZnak(buttonNazwy[2, 0]);
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        for (int j = 0; j < 3; j++)
+                        {
+                            if (pola[i, j] == -10)
+                            {
+                                WstawZnak(buttonNazwy[i, j]);
+                                i = 3;
+                                j = 3;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+        private void WstawZnak(Button pole)
         {
             pole.Text = "O";
             pole.IsEnabled = false;
@@ -637,7 +452,7 @@ namespace kolkoikrzyzyk
             int b = Grid.GetColumn(pole);
             pola[a-1, b] = 0;
         }
-        private void Sprawdz()
+        private void SprawdzanieKoncaGry()
         {
 
             int wygrana1 = pola[0, 0] + pola[0, 1] + pola[0, 2];
@@ -660,7 +475,7 @@ namespace kolkoikrzyzyk
                 Navigation.PushAsync(new Page2(wynik, labelNazwa.Text));
                               
             }
-            if(ktoGra==9)
+            if(kogoRuch==9)
             {
                 wynik = "Remis";
                 QueueWynikow.Kolejka(QueueWynikow.ostatnieWyniki, wynik);
@@ -678,8 +493,8 @@ namespace kolkoikrzyzyk
             int b = Grid.GetColumn(przycisk);
             pola[a-1, b] = 1;
             przycisk.Text = "X";
-            ktoGra++;
-            Sprawdz();
+            kogoRuch++;
+            SprawdzanieKoncaGry();
             RuchKomputera();
         }
     }       
