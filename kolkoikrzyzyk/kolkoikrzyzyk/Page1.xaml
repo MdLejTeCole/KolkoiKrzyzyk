@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="kolkoikrzyzyk.Page1"
+             Title="Gra">
+    <ContentPage.Content>
+        <Grid BackgroundColor="BurlyWood">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Label x:Name="labelNazwa"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="3"
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"
+                   />
+            <Button x:Name="button1"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Clicked="Button1_Clicked"
+                    FontSize="120"/>
+            <Button x:Name="button2"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Clicked="Button1_Clicked"
+                    FontSize="120"/>
+            <Button x:Name="button3"
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Clicked="Button1_Clicked"
+                    FontSize="120"/>
+            <Button x:Name="button4"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Clicked="Button1_Clicked"
+                    FontSize="120"/>
+            <Button x:Name="button5"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Clicked="Button1_Clicked"
+                    FontSize="120"/>
+            <Button x:Name="button6"
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    Clicked="Button1_Clicked"
+                    FontSize="120"/>
+            <Button x:Name="button7"
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Clicked="Button1_Clicked"
+                    FontSize="120"/>
+            <Button x:Name="button8"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Clicked="Button1_Clicked"
+                    FontSize="120"/>
+            <Button x:Name="button9"
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    Clicked="Button1_Clicked"
+                    FontSize="120"/>
+
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

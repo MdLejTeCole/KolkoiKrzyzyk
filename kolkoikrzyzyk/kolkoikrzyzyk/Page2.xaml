@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="kolkoikrzyzyk.Page2"
+             Title="Wynik">
+    <ContentPage.Content>
+        <Grid BackgroundColor="BurlyWood" Padding="50,0">
+            
+            <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label x:Name="labelWynikKolor"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"/>
+            <Label x:Name="labelWynik"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalTextAlignment="Center"
+                   FontAttributes="Bold"
+                   FontSize="Large"
+                   TextColor="Aquamarine"/>
+            <Label 
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   FontSize="Medium"
+                   TextColor="Black"
+                   Text="Ostatnie wyniki:"/>
+            <Label x:Name="labelOstatnieWyniki1"
+                   Grid.Row="2"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   FontSize="Medium"
+                   Text="--------------"/>
+            <Label x:Name="labelOstatnieWyniki2"
+                   Grid.Row="3"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   FontSize="Medium"
+                   Text="--------------"/>
+            <Label x:Name="labelOstatnieWyniki3"
+                   Grid.Row="4"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   FontSize="Medium"
+                   Text="--------------"/>
+            <Label x:Name="labelOstatnieWyniki4"
+                   Grid.Row="5"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   FontSize="Medium"
+                   Text="--------------"/>
+            <Label x:Name="labelOstatnieWyniki5"
+                   Grid.Row="6"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   FontSize="Medium"
+                   Text="--------------"/>
+            <Label x:Name="labelOstatnieWyniki6"
+                   Grid.Row="7"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   FontSize="Medium"
+                   Text="--------------"/>
+            <Label 
+                    Text="Czy chcesz zagrać jeszcze raz"
+                    Grid.Row="9"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    HorizontalOptions="Center"
+                    FontAttributes="Bold"
+                    FontSize="Large"/>
+            <Button x:Name="nie"
+                    Text="Nie"
+                    Grid.Row="10"
+                    Grid.Column="0"
+                    Clicked="Nie_Clicked"/>
+            <Button x:Name="tak"
+                    Text="Tak"
+                    Grid.Row="10"
+                    Grid.Column="1"
+                    Clicked="Tak_Clicked"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
